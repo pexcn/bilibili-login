@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
 import qrcode_terminal
 import os, time, requests, json, urllib, hashlib
 
@@ -15,7 +18,7 @@ loginInfo = requests.post('https://passport.bilibili.com/x/passport-tv-login/qrc
     'local_id':'0',
     'ts':int(time.time())
 }),headers={
-    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
 }).json()
 
 # 生成二维码
@@ -27,28 +30,28 @@ while True:
         'local_id':'0',
         'ts':int(time.time())
     }),headers={
-        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
     }).json()
-    
+
     if pollInfo['code'] == 0:
         loginData = pollInfo['data']
         break
-        
+
     elif pollInfo['code'] == -3:
         print('API校验密匙错误')
         raise
-    
+
     elif pollInfo['code'] == -400:
         print('请求错误')
         raise
-        
+
     elif pollInfo['code'] == 86038:
         print('二维码已失效')
         raise
-        
+
     elif pollInfo['code'] == 86039:
         time.sleep(5)
-    
+
     else:
         print('未知错误')
         raise
