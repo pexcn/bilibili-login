@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+#
+# cron: 0 */3 * * * bash -c 'cd /vscode/bilibili-login && (./refresh.py; cat info.json; echo -e "\n") &>> ./refresh.log'
+#
+
 import os, time, requests, json, urllib, hashlib
 
 def tvsign(params, appkey='4409e2ce8ffd12b8', appsec='59b43e04ad6965f34319062b478f83dd'):
